@@ -46,15 +46,11 @@ class Socios {
   constructor() {
     this.listaNuevosSocios = []
   }
-  /*  agregarSocio(socio){
-       this.listaNuevosSocios.push(socio)
-   } */ // VERSION ANTERIOR
 
   agregarSocio(socio) {
     socio.numeroDeSocio = this.generadorID();
     this.listaNuevosSocios.push(socio);
   }
-
 
   borrarSocio(socio) {
     this.listaNuevosSocios = this.listaNuevosSocios.filter((value) => {
@@ -76,9 +72,12 @@ class Socios {
   }
   mostrarEnHTML() {
     // primero obtengo el contenedor donde quiero imprimir
+
     let contenedor = document.getElementById("contenedor")
     for (let index = 0; index < this.listaNuevosSocios.length; index++) {
+
       // itera cada socio dentro de mi array
+
       const socio = this.listaNuevosSocios[index];
 
       // Desestructuraciones
@@ -91,9 +90,9 @@ class Socios {
       // crea un div por cada elemento
 
       const elememto = document.createElement("div")
-      
+
       // le voy a asignar un id y una clase a cada socio. Como valor va a tomar su numero de socio
-      
+
       elememto.id = Nsocio
       elememto.className = "socio"
       elememto.innerHTML = `
@@ -106,12 +105,12 @@ class Socios {
             `
 
       // creo botón para borrar
-     
+
       const botonBorrar = document.createElement("button")
       botonBorrar.textContent = "Borrar"
-     
+
       // acción del botón
-     
+
       botonBorrar.onclick = () => {
         const swalWithBootstrapButtons = Swal.mixin({
           customClass: {
@@ -144,7 +143,7 @@ class Socios {
             this.creaJson()
             this.muestraJson()
           } else if (
-            
+
             result.dismiss === Swal.DismissReason.cancel
           ) {
             swalWithBootstrapButtons.fire(
@@ -156,9 +155,9 @@ class Socios {
         })
       }
       // agrego el botón creado a mi elemento
-      
+
       elememto.append(botonBorrar)
-      
+
       // agrego el elemento creado a mi contenedor
       contenedor.append(elememto)
     }
@@ -212,7 +211,7 @@ class Socios {
           this.creaJson()
           this.muestraJson()
         } else if (
-          /* Read more about handling dismissals below */
+          
           result.dismiss === Swal.DismissReason.cancel
         ) {
           swalWithBootstrapButtons.fire(
@@ -413,7 +412,7 @@ class Socios {
                 this.creaJson()
                 this.muestraJson()
               } else if (
-                /* Read more about handling dismissals below */
+                
                 result.dismiss === Swal.DismissReason.cancel
               ) {
                 swalWithBootstrapButtons.fire(
@@ -437,10 +436,12 @@ class Socios {
 
 
 // inicia el array "nuevosSocios" en 0
+
 const SOCIOS = new Socios()
 
 
 // Ingreso de socios de forma estática
+
 const socioEstatico1 = new Socio("Serena", "Vega", parseInt("2020/6/5"));
 const socioEstatico2 = new Socio("Emiliano", "Vega", parseInt("1987/12/26"));
 const socioEstatico3 = new Socio("Emma", "Larkin", parseInt("1988/4/8"));
@@ -495,6 +496,7 @@ inputs.forEach((input) => {
 });
 
 // toma datos del formulario y construye un socio nuevo
+
 const submitFormulario = async (ID) => {
   try {
     let form = await document.getElementById(ID);
@@ -504,8 +506,7 @@ const submitFormulario = async (ID) => {
       let apellido = document.querySelector("#validationDefault02").value
       let fechaNac = document.querySelector("#validationDefaultUsername").value
 
-      console.log("nació en: ", fechaNac);
-
+      
 
       let socio = new Socio(nombre, apellido, parseInt(fechaNac))
       SOCIOS.agregarSocio(socio)
@@ -516,7 +517,10 @@ const submitFormulario = async (ID) => {
       SOCIOS.LogArray()
       SOCIOS.creaJson()
       SOCIOS.muestraJson()
+      form.reset();
     })
+    
+    
   } catch (error) {
     console.log("Error en el submit: ", error);
   }
@@ -524,3 +528,5 @@ const submitFormulario = async (ID) => {
 
 // invocación para que el formulario tome los datos ingresados
 submitFormulario("formulario")
+
+
